@@ -1,38 +1,51 @@
 <!DOCTYPE html>
 <html>
-
 	<head>
+		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/index.css">
+
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
 		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
+
+		<title>Retro - Teams</title>
 	</head>
 
-<ul id="teams-list" class="teams-list list-unstyled"></ul>
+	<body>
+		<div class="navigation">
+			<a href="http://jennyhchen.github.io/retro">Home</a>
+			<a href="../members/members_list.html">Members</a>
+			<a href="../teams/teams_list.html">Teams</a>
+			<a href="#sprints">Sprints</a>
+		</div>
+	
+		<div class="members">
+			<ul id="teams-list" class="teams-list list-unstyled"></ul>
+		</div>
 
-<script type="text/javascript">
-	Launchpad.url('http://liferay.io/retrodash/retro/team').get().then(
-		function(response){
-			var teams = response.body();
+		<script type="text/javascript">
+			Launchpad.url('http://liferay.io/retrodash/retro/team').get().then(
+				function(response){
+					var teams = response.body();
 
-			for (i = 0; i < teams.length; i++) {
-				var teamsList = document.getElementById("teams-list");
+					for (i = 0; i < teams.length; i++) {
+						var teamsList = document.getElementById("teams-list");
 
-				var node = document.createElement("li");
+						var node = document.createElement("li");
 
-				var linkText = document.createTextNode(teams[i].name);
+						var linkText = document.createTextNode(teams[i].name);
 
-				var a = document.createElement("a");
+						var a = document.createElement("a");
 
-				a.appendChild(linkText);
-				a.title = linkText;
-				a.href = "view.html?name=" + teams[i].name ;
+						a.appendChild(linkText);
+						a.title = linkText;
+						a.href = "view.html?name=" + teams[i].name ;
 
-				node.appendChild(a);
+						node.appendChild(a);
 
-				teamsList.appendChild(node);
-			}
-		}
-	);
-</script>
-</body>
+						teamsList.appendChild(node);
+					}
+				}
+			);
+		</script>
+	</body>
 </html>
