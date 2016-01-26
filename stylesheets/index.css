@@ -1,5 +1,6 @@
 .navigation {
 	background-color: #345;
+	padding-left: 100px;
 	width: 100%;
 }
 
@@ -8,11 +9,11 @@
 	display: inline-block;
 	font: 20px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif;
 	font-weight: 100;
-	padding: 20px 20px 20px 80px;
+	padding: 20px 50px;
 	text-decoration: none;
 }
 
 .navigation a:hover {
-	color: #E88;
+	color: #DFF;
 	text-decoration: none;
 }

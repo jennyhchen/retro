@@ -39,6 +39,8 @@
 					var sprintsList = response.body();
 
 					for (i = 0; i < sprintsList.length; i++) {
+						var listItemNode = sprintsListNode.createElement('li');
+
 						console.log(sprintsList[i].name);
 					}
 				}
