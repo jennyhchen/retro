@@ -17,15 +17,15 @@
 </ul>
 
 <script type="text/javascript">
-	var memberList;
+	Launchpad.url('http://liferay.io/retrodash/retro/members').get().then(
+		function(response){
+			var memberList = response.body();
 
-	Launchpad.url('http://liferay.io/retrodash/retro/members').get().then(function(response){
-			memberList = response.body();
+			for (i = 0; i < memberList.length; i++) {
+
+				console.log(memberList[i].name);
+			}
 		});
-
-	for (i = 0; i < memberList.length(); i++) {
-		console.log("test");
-	}
 </script>
 </body>
 </html>
