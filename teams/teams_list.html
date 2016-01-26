@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html>
+
+	<head>
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
+	</head>
+
+<ul id="teams-list" class="teams-list list-unstyled"></ul>
+
+<script type="text/javascript">
+	Launchpad.url('http://liferay.io/retrodash/retro/team').get().then(
+		function(response){
+			var teams = response.body();
+
+			for (i = 0; i < teams.length; i++) {
+				var teamsList = document.getElementById("teams-list");
+
+				var node = document.createElement("li");
+
+				var linkText = document.createTextNode(teams[i].name);
+
+				var a = document.createElement("a");
+
+				a.appendChild(linkText);
+				a.title = linkText;
+				a.href = "view.html?name=" + teams[i].name ;
+
+				node.appendChild(a);
+
+				teamsList.appendChild(node);
+			}
+		}
+	);
+</script>
+</body>
+</html>
