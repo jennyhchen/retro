@@ -33,7 +33,7 @@
 				var name = document.getElementById("memberName").value;
 				var email = document.getElementById("memberEmail").value;
 
-				var launchPadTeamURL = "http://liferay.io/retrodash/test/members";
+				var launchPadTeamURL = "http://liferay.io/retrodash/retro/members";
 
 				Launchpad.url(launchPadTeamURL).post({"name":name,"emailAddress":email}).then(
 					function(response){
