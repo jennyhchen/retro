@@ -42,6 +42,30 @@
 					team.appendChild(textNode);
 				}
 			);
+
+			var launchPadMemberTeamURL = "http://liferay.io/retrodash/retro/member_team";
+
+			var teamId = "137026128637673773";
+
+			Launchpad.url(launchPadMemberTeamURL).get(Filter.match('teamId', teamId)).then(
+				function(response){
+					var data = response.body();
+
+
+					for (i = 0; i < data.length; i++) {
+						var br = document.createElement('br');
+
+						team.appendChild(br);
+
+						var span = document.createElement('span');
+
+						span.setAttribute('class', 'member');
+						span.appendChild(document.createTextNode(data[i].memberId));
+
+						team.appendChild(span);
+					}
+				}
+			);
 		</script>
 	</body>
 </html>
