@@ -37,6 +37,10 @@ nav a:hover {
 	text-decoration: none;
 }
 
+h1 {
+	margin: 40px;
+}
+
 .member-list img {
 	padding: 5px;
 }
