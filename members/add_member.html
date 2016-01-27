@@ -11,21 +11,20 @@
 	</head>
 
 	<body>
-		<div class="navigation">
+		<nav role="navigation">
 			<a href="http://jennyhchen.github.io/retro">Home</a>
 			<a href="../members/members_list.html">Members</a>
 			<a href="../teams/teams_list.html">Teams</a>
 			<a href="../sprints/sprints_list.html">Sprints</a>
-		</div>
+		</nav>
+
+		<h1>Add Member</h1>
 
 		<div class="addMember" align="center">
 			<form class="add-member-list list-unstyled" method="POST" id="addMemberList">
-				<br />
-				<p>Name: <input type="text" id="myMemberName"></p>
-				<br />
-				<p>Email Address: <input type="text" id="myMemberEmail"></p>
-				<br />
-				<input type="button" onclick="addMember()" value="Submit">
+				<input type="text" name="name" value="Name" />
+			<input type="text" name="email" value="Email" />
+				<input class="btn btn-default" type="submit" onclick="addMember()" value="Submit">
 			</form>
 		</div>
 
