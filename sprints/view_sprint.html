@@ -66,8 +66,6 @@
 			function displayTeamName(sprintDiv, teamId) {
 				var launchPadURL = "http://liferay.io/retrodash/retro/team/" + teamId;
 
-				console.log(launchPadURL);
-
 				Launchpad.url(launchPadURL).get().then(
 					function(response){
 						var data = response.body();
