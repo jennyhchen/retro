@@ -1,0 +1,82 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/main.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
+		<script src="../javascripts/main.js"></script>
+
+		<title>Retro - Sprints</title>
+	</head>
+
+	<body>
+		<object data="../navigation.html" name="navigation" type="text/html" height="60px" width="100%"></object>
+
+		<h1>All Feedback
+			<a href="add_feedback.html"><button class="btn btn-default"><svg width="10px" viewBox="0 0 512 512"><path d="M479.82 224.002H287.41V32.092c0-17.6-14.4-32-32-32s-32 14.4-32 32v191.91H32c-17.6 0-32 14.4-32 32s14.4 32 32 32h191.41v191.91c0 17.6 14.4 32 32 32s32-14.4 32-32v-191.91h192.41c17.6 0 32-14.4 32-32s-14.4-32-32-32z"></path></svg> Add Feedback</button></a>
+		</h1>
+
+		<div class="feedback">
+			<ul id="feedbackList" class="feedback-list list-unstyled"></ul>
+		</div>
+
+		<script type="text/javascript">
+			var sprintId = getParameterByName("id");
+
+			console.log('sprintId: ' + sprintId);
+			if (sprintId != undefined) {
+				Launchpad.url('http://liferay.io/retrodash/retro/feedback').get(Filter.match('sprintId', sprintId)).then(
+					function(response){
+						var feedback = response.body();
+
+						for (i = 0; i < feedback.length; i++) {
+
+							var feedbackList = document.getElementById("feedbackList");
+
+							var node = document.createElement("li");
+
+							var linkText = document.createTextNode(feedback[i].comment);
+
+							var a = document.createElement("a");
+
+							a.appendChild(linkText);
+							a.title = linkText;
+							a.href = "view_feedback.html?id=" + feedback[i].id;
+
+							node.appendChild(a);
+
+							feedbackList.appendChild(node);
+						}
+					}
+				);
+			}
+			else {
+				Launchpad.url('http://liferay.io/retrodash/retro/feedback').get().then(
+					function(response){
+						var feedback = response.body();
+
+						for (i = 0; i < feedback.length; i++) {
+							var feedbackList = document.getElementById("feedbackList");
+
+							var node = document.createElement("li");
+
+							var linkText = document.createTextNode(feedback[i].comment);
+
+							var a = document.createElement("a");
+
+							a.appendChild(linkText);
+							a.title = linkText;
+							a.href = "view_feedback.html?id=" + feedback[i].id;
+
+							node.appendChild(a);
+
+							feedbackList.appendChild(node);
+						}
+					}
+				);
+			}
+		</script>
+	</body>
+</html>

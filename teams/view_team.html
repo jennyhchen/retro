@@ -34,7 +34,8 @@
 				function(response){
 					var data = response.body();
 
-					team.appendChild(document.createTextNode(data.name));
+					team.appendChild(getDisplayRow('name', data.name));
+					team.appendChild(getDisplayRow('id', data.id));
 				}
 			);
 
