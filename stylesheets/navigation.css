@@ -19,20 +19,20 @@ li a:hover {
 	text-decoration: none;
 }
 
-.navigation {
+nav {
 	background-color: #345;
 	padding-left: 100px;
 	width: 100%;
 }
 
-.navigation a {
+nav a {
 	color: #FFF;
 	display: inline-block;
 	padding: 20px 50px;
 	text-decoration: none;
 }
 
-.navigation a:hover {
+nav a:hover {
 	color: #DFF;
 	text-decoration: none;
 }
