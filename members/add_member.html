@@ -29,13 +29,12 @@
 		<script type="text/javascript">
 			function addMember() {
 				var form = document.getElementById("fm");
-
 				var name = document.getElementById("memberName").value;
 				var email = document.getElementById("memberEmail").value;
 
-				var launchPadTeamURL = "http://liferay.io/retrodash/retro/members";
+				var launchPadMemberURL = "http://liferay.io/retrodash/retro/members";
 
-				Launchpad.url(launchPadTeamURL).post({"name":name,"email":email}).then(
+				Launchpad.url(launchPadMemberURL).post({"name":name,"email":email}).then(
 					function(response){
 						console.log('Data saved');
 
