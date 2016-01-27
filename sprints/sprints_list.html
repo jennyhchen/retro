@@ -5,6 +5,24 @@
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+		<style>
+			.sprints-list li {
+				border-color: #CDD;
+				border-style: solid;
+				border-width: 0 0 1px 0;
+			}
+
+			.sprints-list li a {
+				display: block;
+				width: 100%;
+				padding: 20px 20px 20px 40px;
+			}
+
+			.sprints-list li a:hover {
+				background-color: #CDD;
+			}
+		</style>
+
 		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
 
 		<title>Retro - Sprints</title>
@@ -20,28 +38,32 @@
 
 		<div class="sprints">
 			<ul id="sprintsList" class="sprints-list list-unstyled">
-				<li>
-					<a href="#">
-						<img class="img-circle" alt="user avatar" src="data:image/svg+xml;base64,PD94bWwgdmVyc2lvbj0iMS4wIiBlbmNvZGluZz0iVVRGLTgiIHN0YW5kYWxvbmU9InllcyI/PjxzdmcgeG1sbnM9Imh0dHA6Ly93d3cudzMub3JnLzIwMDAvc3ZnIiB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgdmlld0JveD0iMCAwIDE0MCAxNDAiIHByZXNlcnZlQXNwZWN0UmF0aW89Im5vbmUiPjwhLS0KU291cmNlIFVSTDogaG9sZGVyLmpzLzE0MHgxNDAKQ3JlYXRlZCB3aXRoIEhvbGRlci5qcyAyLjYuMC4KTGVhcm4gbW9yZSBhdCBodHRwOi8vaG9sZGVyanMuY29tCihjKSAyMDEyLTIwMTUgSXZhbiBNYWxvcGluc2t5IC0gaHR0cDovL2ltc2t5LmNvCi0tPjxkZWZzPjxzdHlsZSB0eXBlPSJ0ZXh0L2NzcyI+PCFbQ0RBVEFbI2hvbGRlcl8xNTI3Zjk1MGYwNiB0ZXh0IHsgZmlsbDojQUFBQUFBO2ZvbnQtd2VpZ2h0OmJvbGQ7Zm9udC1mYW1pbHk6QXJpYWwsIEhlbHZldGljYSwgT3BlbiBTYW5zLCBzYW5zLXNlcmlmLCBtb25vc3BhY2U7Zm9udC1zaXplOjEwcHQgfSBdXT48L3N0eWxlPjwvZGVmcz48ZyBpZD0iaG9sZGVyXzE1MjdmOTUwZjA2Ij48cmVjdCB3aWR0aD0iMTQwIiBoZWlnaHQ9IjE0MCIgZmlsbD0iI0VFRUVFRSIvPjxnPjx0ZXh0IHg9IjQ0LjA2MjUiIHk9Ijc0LjUiPjE0MHgxNDA8L3RleHQ+PC9nPjwvZz48L3N2Zz4=" style="width: 140px; height: 140px;">
-						<span>sprint name</span>
-					</a>
-				</li>
 			</ul>
 		</div>
 
 		<script type="text/javascript">
 			Launchpad.url('http://liferay.io/retrodash/retro/sprint').get().then(
 				function(response){
-					var sprintsListNode = document.getElementById('sprintsList');
+					var sprintsList = document.getElementById('sprintsList');
 
-					console.log(sprintsListNode);
+					console.log(sprintsList);
 
-					var sprintsList = response.body();
+					var sprints = response.body();
 
-					for (i = 0; i < sprintsList.length; i++) {
-						var listItemNode = sprintsListNode.createElement('li');
+					for (i = 0; i < sprints.length; i++) {
+						var node = document.createElement("li");
 
-						console.log(sprintsList[i].name);
+						var linkText = document.createTextNode(sprints[i].name);
+
+						var a = document.createElement("a");
+
+						a.appendChild(linkText);
+						a.title = linkText;
+						a.href = "view_sprint.html?id=" + sprints[i].id;
+
+						node.appendChild(a);
+
+						sprintsList.appendChild(node);
 					}
 				}
 			);
