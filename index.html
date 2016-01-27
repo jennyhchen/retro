@@ -7,17 +7,6 @@
 
 		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
 
-		<script type="text/javascript">
-			Launchpad.url('http://liferay.io/retrodash/retro/retro').get().then(
-				function(response){
-					var retroList = response.body();
-
-					for (i = 0; i < retroList.length; i++) {
-						console.log(retroList[i].sprintId);
-					}
-				});
-		</script>
-
 		<title>Retro - Dashboard</title>
 	</head>
 
@@ -29,7 +18,35 @@
 			<a href="sprints/sprints_list.html">Sprints</a>
 		</nav>
 
-		<div class="retros">
-		</div>
+		<ul class="retros-list list-unstyled" id="retrosList">
+		</ul>
+
+		<script type="text/javascript">
+			Launchpad.url('http://liferay.io/retrodash/retro/retro').get().then(
+				function(response) {
+					var sprintsList = document.getElementById('retrosList');
+
+					var retros = response.body();
+
+					for (i = 0; i < retros.length; i++) {
+						console.log(retros[i].sprintId);
+
+						var node = document.createElement("li");
+
+						var linkText = document.createTextNode(retros[i].discussion);
+
+						var a = document.createElement("a");
+
+						a.appendChild(linkText);
+						a.title = linkText;
+						a.href = "view_retro.html?id=" + retros[i].id;
+
+						node.appendChild(a);
+
+						sprintsList.appendChild(node);
+					}
+				}
+			);
+		</script>
 	</body>
 </html>
