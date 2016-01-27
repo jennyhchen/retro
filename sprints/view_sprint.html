@@ -5,6 +5,22 @@
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
+		<style>
+			.sprint {
+				margin: 40px 80px;
+			}
+
+			.label-name {
+				color: #888;
+				display: inline-block;
+				width: 200px;
+			}
+
+			.label-value {
+				display: inline-block;
+			}
+		</style>
+
 		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
 
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
@@ -22,13 +38,55 @@
 			<a href="../sprints/sprints_list.html">Sprints</a>
 		</div>
 
+		<div class="sprint" id="sprint">
+		</div>
+
 		<script type="text/javascript">
-			Launchpad.url('http://liferay.io/retrodash/retro/sprint').get().then(
+			var sprint = document.getElementById('sprint');
+
+			var id = getParameterByName("id");
+
+			var launchPadURL = "http://liferay.io/retrodash/retro/sprint/" + id;
+
+			Launchpad.url(launchPadURL).get().then(
 				function(response){
-					var id = getParameterByName("id");
-					console.log(id);
+					var data = response.body();
+
+					sprint.appendChild(displaySprintValue("Name", data.name));
+					sprint.appendChild(displaySprintValue("Team", data.teamId));
+					sprint.appendChild(displaySprintValue("Start Date", data.startDate));
+					sprint.appendChild(displaySprintValue("End Date", data.endDate));
+					sprint.appendChild(displaySprintValue("Commited Story Points", data.committedStoryPoints));
+					sprint.appendChild(displaySprintValue("Completed Story Points", data.completedStoryPoints));
+					sprint.appendChild(displaySprintValue("Added Story Points", data.addedStoryPoints));
+					sprint.appendChild(displaySprintValue("Removed Story Points", data.removedStoryPoints));
 				}
 			);
+
+			function displaySprintValue(name, value) {
+				var div = document.createElement("div");
+				var span = document.createElement("span");
+
+				span.setAttribute('class', 'label-name');
+
+				var textNode = document.createTextNode(name);
+
+				span.appendChild(textNode);
+
+				div.appendChild(span);
+
+				var span = document.createElement("span");
+
+				span.setAttribute('class', 'label-value');
+
+				var textNode = document.createTextNode(value);
+
+				span.appendChild(textNode);
+
+				div.appendChild(span);
+
+				return div;
+			}
 		</script>
 	</body>
 </html>
