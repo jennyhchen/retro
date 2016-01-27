@@ -35,7 +35,7 @@
 
 				var launchPadTeamURL = "http://liferay.io/retrodash/retro/members";
 
-				Launchpad.url(launchPadTeamURL).post({"name":name,"emailAddress":email}).then(
+				Launchpad.url(launchPadTeamURL).post({"name":name,"email":email}).then(
 					function(response){
 						console.log('Data saved');
 
