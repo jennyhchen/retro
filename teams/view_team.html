@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/navigation.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<style>
+			.team {
+				margin: 40px 80px;
+			}
+
+			.label-name {
+				color: #888;
+				display: inline-block;
+				width: 200px;
+			}
+
+			.label-value {
+				display: inline-block;
+			}
+		</style>
+
+		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+
+		<script src="../javascripts/main.js"></script>
+
+		<title>Retro - Team</title>
+	</head>
+
+	<body>
+		<div class="navigation">
+			<a href="http://jennyhchen.github.io/retro">Home</a>
+			<a href="../members/members_list.html">Members</a>
+			<a href="../teams/teams_list.html">Teams</a>
+			<a href="../sprints/sprints_list.html">Sprints</a>
+		</div>
+
+		<div class="team" id="team"></div>
+
+		<script type="text/javascript">
+			var team = document.getElementById('team');
+
+			var id = getParameterByName("id");
+
+			var launchPadTeamURL = "http://liferay.io/retrodash/retro/team/" + id;
+
+			Launchpad.url(launchPadTeamURL).get().then(
+				function(response){
+					var data = response.body();
+
+					var textNode = document.createTextNode(data.name + ' (' + data.id + ')');
+
+					team.appendChild(textNode);
+				}
+			);
+		</script>
+	</body>
+</html>
