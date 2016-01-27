@@ -18,13 +18,14 @@
 			<a href="../sprints/sprints_list.html">Sprints</a>
 		</div>
 
-		<div class="addMember">
+		<div class="addMember" align="center">
 			<form class="add-member-list list-unstyled" method="POST" id="addMemberList">
-				  Name: <input type="text" name="name" id="myMemberName">
-				  <br />
-				  Email Address: <input type="text" name="emailAddress" id="myMemberEmail">
-				  <br />
-				  <input type="button" onclick="addMember()" value="Submit">
+				<br />
+				<p>Name: <input type="text" id="myMemberName"></p>
+				<br />
+				<p>Email Address: <input type="text" id="myMemberEmail"></p>
+				<br />
+				<input type="button" onclick="addMember()" value="Submit">
 			</form>
 		</div>
 
@@ -34,7 +35,7 @@
 				var memberName = document.getElementById("myMemberName");
 				var memberEmail = document.getElementById("myMemberEmail");
 
-				Launchpad.url('http://liferay.io/retrodash/test/members').post({"name": 'memberName', "emailAddress": 'memberEmail'}).then(
+				Launchpad.url('http://liferay.io/retrodash/test/members').post({"name": memberName,"emailAddress":memberEmail}).then(
 					function(){
 						console.log('Data saved');
 					}
