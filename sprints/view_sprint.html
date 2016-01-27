@@ -53,7 +53,7 @@
 					var data = response.body();
 
 					sprint.appendChild(displaySprintValue("Name", data.name));
-					sprint.appendChild(displaySprintValue("Team", data.teamId));
+					displayTeamName(sprint, data.teamId);
 					sprint.appendChild(displaySprintValue("Start Date", data.startDate));
 					sprint.appendChild(displaySprintValue("End Date", data.endDate));
 					sprint.appendChild(displaySprintValue("Commited Story Points", data.committedStoryPoints));
@@ -62,6 +62,20 @@
 					sprint.appendChild(displaySprintValue("Removed Story Points", data.removedStoryPoints));
 				}
 			);
+
+			function displayTeamName(sprintDiv, teamId) {
+				var launchPadURL = "http://liferay.io/retrodash/retro/team/" + teamId;
+
+				console.log(launchPadURL);
+
+				Launchpad.url(launchPadURL).get().then(
+					function(response){
+						var data = response.body();
+
+						sprintDiv.appendChild(displaySprintValue("Team", data.name));
+					}
+				);
+			}
 
 			function displaySprintValue(name, value) {
 				var div = document.createElement("div");
