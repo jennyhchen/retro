@@ -1,47 +1,27 @@
 <!DOCTYPE html>
 <html>
 	<head>
-		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/navigation.css">
+		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/main.css">
 
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
 
-		<style>
-			.add-team {
-				margin: 40px 80px;
-			}
-
-			.label-name {
-				color: #888;
-				display: inline-block;
-				width: 200px;
-			}
-
-			.label-value {
-				display: inline-block;
-			}
-		</style>
-
 		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
 
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-
-		<script src="../javascripts/main.js"></script>
-
-		<title>Retro - Add Team</title>
+		<title>Retro - Teams</title>
 	</head>
 
 	<body>
-		<div class="navigation">
+		<nav role="navigation">
 			<a href="http://jennyhchen.github.io/retro">Home</a>
 			<a href="../members/members_list.html">Members</a>
 			<a href="../teams/teams_list.html">Teams</a>
 			<a href="../sprints/sprints_list.html">Sprints</a>
-		</div>
+		</nav>
 
 		<form class="add-team unstyled" id="fm" onsubmit="return false;">
 			<input type="text" name="name" id="team-name">
 
-			<input type="button" onclick="addTeam()" value="Submit">
+			<input type="submit" onclick="addTeam()" value="Submit">
 		</form>
 
 
@@ -54,8 +34,9 @@
 
 				Launchpad.url(launchPadTeamURL).post({"name":teamName}).then(
 					function(response){
-						//redirect to list page
-						console.log('saved data');
+						console.log('Data saved');
+
+						window.location = "teams_list.html"
 					}
 				);
 			}
