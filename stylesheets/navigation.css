@@ -1,3 +1,24 @@
+body {
+	font: 20px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif;
+	font-weight: 100;
+}
+
+li {
+	border: 0 solid #CDD;
+	border-width: 0 0 1px 0;
+}
+
+li a {
+	cursor: pointer;
+	display: block;
+	padding: 20px 20px 40px;
+}
+
+li a:hover {
+	background-color: #CDD;
+	text-decoration: none;
+}
+
 .navigation {
 	background-color: #345;
 	padding-left: 100px;
@@ -7,8 +28,6 @@
 .navigation a {
 	color: #FFF;
 	display: inline-block;
-	font: 20px / 1.4 Helvetica, arial, nimbussansl, liberationsans, freesans, clean, sans-serif;
-	font-weight: 100;
 	padding: 20px 50px;
 	text-decoration: none;
 }
@@ -16,4 +35,8 @@
 .navigation a:hover {
 	color: #DFF;
 	text-decoration: none;
+}
+
+.member-list img {
+	padding: 5px;
 }
