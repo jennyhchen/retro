@@ -1,0 +1,47 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/navigation.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
+
+		<title>Retro - Add Member</title>
+	</head>
+
+	<body>
+		<div class="navigation">
+			<a href="http://jennyhchen.github.io/retro">Home</a>
+			<a href="../members/members_list.html">Members</a>
+			<a href="../teams/teams_list.html">Teams</a>
+			<a href="../sprints/sprints_list.html">Sprints</a>
+		</div>
+
+		<div class="addMember">
+			<form class="add-member-list list-unstyled" method="POST" id="addMemberList">
+				  Name: <input type="text" name="name" id="myMemberName">
+				  <br />
+				  Email Address: <input type="text" name="emailAddress" id="myMemberEmail">
+				  <br />
+				  <input type="button" onclick="addMember()" value="Submit">
+			</form>
+		</div>
+
+		<script type="text/javascript">
+			function addMember() {
+				var form = document.getElementById("addMemberList");
+				var memberName = document.getElementById("myMemberName");
+				var memberEmail = document.getElementById("myMemberEmail");
+
+				Launchpad.url('http://liferay.io/retrodash/test/members').post({"name": 'memberName', "emailAddress": 'memberEmail'}).then(
+					function(){
+						console.log('Data saved');
+					}
+				);
+
+				form.submit();
+			}
+		</script>		
+	</body>
+</html>
