@@ -20,27 +20,36 @@
 
 		<h1>Add Member</h1>
 
-		<div class="addMember" align="center">
-			<form class="add-member-list list-unstyled" method="POST" id="addMemberList">
-				<input type="text" name="name" value="Name" />
-			<input type="text" name="email" value="Email" />
-				<input class="btn btn-default" type="submit" onclick="addMember()" value="Submit">
-			</form>
-		</div>
+		<form class="add-member col-md-4" id="fm" onsubmit="return false;">
+			<div class="form-group">
+				<label for="memberName">Name</label>
+				<input class="form-control" type="text" name="name" id="memberName" placeholder="Name">
+			</div>
+
+			<div class="form-group">
+				<label for="memberEmail">Email Address</label>
+				<input class="form-control" type="text" name="email" id="memberEmail" placeholder="Email Address">
+			</div>
+
+			<button type="submit" class="btn btn-default" onclick="addMember()">Submit</button>
+		</form>
 
 		<script type="text/javascript">
 			function addMember() {
-				var form = document.getElementById("addMemberList");
-				var memberName = document.getElementById("myMemberName");
-				var memberEmail = document.getElementById("myMemberEmail");
+				var form = document.getElementById("fm");
 
-				Launchpad.url('http://liferay.io/retrodash/test/members').post({"name": memberName,"emailAddress":memberEmail}).then(
-					function(){
+				var name = document.getElementById("name").value;
+				var email = document.getElementById("email").value;
+
+				var launchPadTeamURL = "http://liferay.io/retrodash/test/members";
+
+				Launchpad.url(launchPadTeamURL).post({"name":name,"emailAddress":email}).then(
+					function(response){
 						console.log('Data saved');
+
+						window.location = "members_list.html"
 					}
 				);
-
-				form.submit();
 			}
 		</script>
 	</body>

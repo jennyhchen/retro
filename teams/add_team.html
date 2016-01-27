@@ -18,12 +18,16 @@
 			<a href="../sprints/sprints_list.html">Sprints</a>
 		</nav>
 
-		<form class="add-team unstyled" id="fm" onsubmit="return false;">
-			<input type="text" name="name" id="team-name">
+		<h1>Add Team</h1>
 
-			<input type="submit" onclick="addTeam()" value="Submit">
+		<form class="add-team col-md-4" id="fm" onsubmit="return false;">
+			<div class="form-group">
+				<label for="teamName">Name</label>
+				<input class="form-control" type="text" name="name" id="teamName" plaeholder="Name">
+			</div>
+
+			<button type="submit" class="btn btn-default" onclick="addTeam()">Submit</button>
 		</form>
-
 
 		<script type="text/javascript">
 			function addTeam() {
