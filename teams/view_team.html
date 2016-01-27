@@ -2,32 +2,29 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/main.css">
-
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
 		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-
 		<script src="../javascripts/main.js"></script>
-
 		<title>Retro - Team</title>
 	</head>
 
 	<body>
-		<nav role="navigation">
-			<a href="http://jennyhchen.github.io/retro">Home</a>
-			<a href="../members/members_list.html">Members</a>
-			<a href="../teams/teams_list.html">Teams</a>
-			<a href="../sprints/sprints_list.html">Sprints</a>
-		</nav>
+		<object data="../navigation.html" name="navigation" type="text/html" height="60px" width="100%"></object>
 
 		<h1>Team Detail</h1>
 
 		<div class="team" id="team"></div>
 
+		<h2>
+			Members
+			<button type="button" class="btn btn-default" data-toggle="modal" data-target="">Update Members</button>
+		</h2>
+
+		<div class="team" id="teamMembers"></div>
+
 		<script type="text/javascript">
 			var team = document.getElementById('team');
+			var teamMembers = document.getElementById('teamMembers');
 
 			var id = getParameterByName("id");
 
@@ -37,35 +34,33 @@
 				function(response){
 					var data = response.body();
 
-					var textNode = document.createTextNode(data.name + ' (' + data.id + ')');
-
-					team.appendChild(textNode);
+					team.appendChild(document.createTextNode(data.name));
 				}
 			);
 
-			var launchPadMemberTeamURL = "http://liferay.io/retrodash/retro/member_team";
-
-			var teamId = "137026128637673773";
-
-			Launchpad.url(launchPadMemberTeamURL).get(Filter.match('teamId', teamId)).then(
+			Launchpad.url('http://liferay.io/retrodash/retro/member_team').get(Filter.match('teamId', id)).then(
 				function(response){
 					var data = response.body();
 
-
 					for (i = 0; i < data.length; i++) {
-						var br = document.createElement('br');
-
-						team.appendChild(br);
-
-						var span = document.createElement('span');
-
-						span.setAttribute('class', 'member');
-						span.appendChild(document.createTextNode(data[i].memberId));
-
-						team.appendChild(span);
+						displayTeamMember(teamMembers, data[i].memberId);
 					}
 				}
 			);
+
+			function displayTeamMember(node, id) {
+				Launchpad.url('http://liferay.io/retrodash/retro/members/' + id).get(Filter.match('memberId', id)).then(
+					function(response){
+						var data = response.body();
+
+						for (var i in data) {
+							node.appendChild(getDisplayRow(i, data[i]));
+						}
+
+						node.appendChild(document.createElement("br"));
+					}
+				);
+			}
 		</script>
 	</body>
 </html>

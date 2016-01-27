@@ -2,25 +2,14 @@
 <html>
 	<head>
 		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/main.css">
-
 		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
-
 		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
-
-		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
-
 		<script src="../javascripts/main.js"></script>
-
 		<title>Retro - Sprint</title>
 	</head>
 
 	<body>
-		<nav role="navigation">
-			<a href="http://jennyhchen.github.io/retro">Home</a>
-			<a href="../members/members_list.html">Members</a>
-			<a href="../teams/teams_list.html">Teams</a>
-			<a href="../sprints/sprints_list.html">Sprints</a>
-		</nav>
+		<object data="../navigation.html" name="navigation" type="text/html" height="60px" width="100%"></object>
 
 		<h1>Sprint Detail</h1>
 
@@ -38,14 +27,15 @@
 				function(response){
 					var data = response.body();
 
-					sprint.appendChild(displaySprintValue("Name", data.name));
+					sprint.appendChild(getDisplayRow("Name", data.name));
 					displayTeamName(sprint, data.teamId);
-					sprint.appendChild(displaySprintValue("Start Date", data.startDate));
-					sprint.appendChild(displaySprintValue("End Date", data.endDate));
-					sprint.appendChild(displaySprintValue("Commited Story Points", data.committedStoryPoints));
-					sprint.appendChild(displaySprintValue("Completed Story Points", data.completedStoryPoints));
-					sprint.appendChild(displaySprintValue("Added Story Points", data.addedStoryPoints));
-					sprint.appendChild(displaySprintValue("Removed Story Points", data.removedStoryPoints));
+					sprint.appendChild(getDisplayRow("Start Date", data.startDate));
+					sprint.appendChild(getDisplayRow("End Date", data.endDate));
+					sprint.appendChild(getDisplayRow("Commited Story Points", data.committedStoryPoints));
+					sprint.appendChild(getDisplayRow("Completed Story Points", data.completedStoryPoints));
+					sprint.appendChild(getDisplayRow("Added Story Points", data.addedStoryPoints));
+					sprint.appendChild(getDisplayRow("Removed Story Points", data.removedStoryPoints));
+
 				}
 			);
 
@@ -56,34 +46,9 @@
 					function(response){
 						var data = response.body();
 
-						sprintDiv.appendChild(displaySprintValue("Team", data.name));
+						sprintDiv.appendChild(getDisplayRow("Team", data.name));
 					}
 				);
-			}
-
-			function displaySprintValue(name, value) {
-				var div = document.createElement("div");
-				var span = document.createElement("span");
-
-				span.setAttribute('class', 'label-name');
-
-				var textNode = document.createTextNode(name);
-
-				span.appendChild(textNode);
-
-				div.appendChild(span);
-
-				var span = document.createElement("span");
-
-				span.setAttribute('class', 'label-value');
-
-				var textNode = document.createTextNode(value);
-
-				span.appendChild(textNode);
-
-				div.appendChild(span);
-
-				return div;
 			}
 		</script>
 	</body>

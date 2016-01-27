@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/main.css">
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
+		<script src="../javascripts/main.js"></script>
+
+		<title>Retro - Member</title>
+	</head>
+
+	<body>
+		<object data="../navigation.html" name="navigation" type="text/html" height="60px" width="100%"></object>
+
+		<h1>Member Detail</h1>
+
+		<div class="member" id="member"></div>
+
+		<script type="text/javascript">
+			var member = document.getElementById('member');
+
+			var id = getParameterByName("id");
+
+			var launchPadURL = "http://liferay.io/retrodash/retro/members/" + id;
+
+			Launchpad.url(launchPadURL).get().then(
+				function(response){
+					var data = response.body();
+
+					member.appendChild(getDisplayRow("Name", data.name));
+					member.appendChild(getDisplayRow("Email", data.email));
+					member.appendChild(getDisplayRow("ID", data.id));
+
+					displayTeamName(sprint, data.teamId);
+				}
+			);
+		</script>
+	</body>
+</html>
