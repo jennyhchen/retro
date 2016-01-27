@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<link rel="stylesheet" type="text/css" media="screen" href="../stylesheets/main.css">
+
+		<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" integrity="sha384-1q8mTJOASx8j1Au+a5WDVnPi2lkFfwwEAa8hDDdjZlpLegxhjVME1fgjWPGmkzs7" crossorigin="anonymous">
+
+		<script src="https://cdn.rawgit.com/launchpad-project/api.js/master/build/globals/api-min.js"></script>
+
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.0.0-beta1/jquery.min.js"></script>
+
+		<script src="../javascripts/main.js"></script>
+
+		<title>Retro - Feedback</title>
+	</head>
+
+	<body>
+		<nav role="navigation">
+			<a href="http://jennyhchen.github.io/retro">Home</a>
+			<a href="members/members_list.html">Members</a>
+			<a href="teams/teams_list.html">Teams</a>
+			<a href="sprints/sprints_list.html">Sprints</a>
+		</nav>
+
+		<h1>Retro Feedback</h1>
+
+		<div class="feedback-container" id="feedbackContainer"><div>
+
+		<script type="text/javascript">
+			var feedbackContainer = document.getElementById('feedbackContainer');
+
+			var id = getParameterByName("id");
+
+			var launchPadURL = "http://liferay.io/retrodash/retro/retro/" + id;
+
+			Launchpad.url(launchPadURL).get().then(
+				function(response) {
+					var data = response.body();
+				}
+			);
+		</script>
+	</body>
+</html>
